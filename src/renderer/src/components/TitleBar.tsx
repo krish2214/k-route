@@ -1,3 +1,4 @@
+import netforgeMark from '../assets/netforge-mark.png'
 import { ColorBadge } from './ColorBadge'
 import { ThemeToggle } from './ThemeToggle'
 import { UpdateIndicator } from './UpdateIndicator'
@@ -28,10 +29,16 @@ export function TitleBar({ status }: { status: TitleBarStatus }): React.JSX.Elem
     >
       <div
         // Matches the "LOCKUP · horizontal" wordmark spec from the final icon design.
-        className={`font-sans text-[13px] leading-none font-bold tracking-[-0.02em] ${
+        className={`flex items-center gap-1.5 font-sans text-[13px] leading-none font-bold tracking-[-0.02em] ${
           dimmed ? 'text-muted-foreground' : 'text-foreground'
         }`}
       >
+        <img
+          src={netforgeMark}
+          alt=""
+          aria-hidden="true"
+          className="size-5 rounded-[5px] object-contain"
+        />
         NetForge
       </div>
       <div className="flex-1" />

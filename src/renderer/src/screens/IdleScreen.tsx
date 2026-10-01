@@ -8,6 +8,7 @@ import { ScreenFooter } from '../components/ScreenFooter'
 import { Alert, AlertDescription } from '../components/ui/alert'
 import { Button } from '../components/ui/button'
 import { ToggleGroup, ToggleGroupItem } from '../components/ui/toggle-group'
+import netforgeMark from '../assets/netforge-mark.png'
 import { useNetworkPolling } from '../hooks/useNetworkPolling'
 import { useAppStore } from '../store/useAppStore'
 import { describeError, formatBytes, toDisplayPath } from '../utils/format'
@@ -180,6 +181,20 @@ export function IdleScreen(): React.JSX.Element {
   return (
     <div className="flex h-full flex-col bg-background">
       <div className="flex flex-col gap-[9px] px-5 pt-4 pb-3.5">
+        <div className="flex items-center gap-2.5 rounded-[10px] border border-border bg-[var(--hero-bg)] px-3 py-2">
+          <img src={netforgeMark} alt="NetForge" className="size-8 rounded-[8px] object-contain" />
+          <div className="min-w-0">
+            <div className="font-sans text-[13px] font-bold tracking-[-0.02em] text-foreground">
+              NetForge <span aria-hidden="true">⚡</span>
+            </div>
+            <div className="font-mono text-[9px] tracking-[0.12em] text-muted-foreground uppercase">
+              Multi-link download workbench
+            </div>
+          </div>
+          <div className="ml-auto hidden font-mono text-[9px] text-muted-foreground sm:block">
+            Use every connection · finish one file
+          </div>
+        </div>
         <div className="flex items-center gap-[9px]">
           <div
             className={cn(
@@ -188,7 +203,7 @@ export function IdleScreen(): React.JSX.Element {
             )}
           >
             <div id="idle-link-label" className={fieldLabelClass}>
-              LINK
+              🔗 LINK
             </div>
             <input
               type="url"
@@ -229,7 +244,7 @@ export function IdleScreen(): React.JSX.Element {
           )}
         >
           <div id="idle-saveas-label" className={fieldLabelClass}>
-            SAVE AS
+            💾 SAVE AS
           </div>
           <input
             type="text"
@@ -248,7 +263,7 @@ export function IdleScreen(): React.JSX.Element {
         </div>
 
         <div className="flex h-9 items-center gap-[9px] rounded-[9px] border border-border px-3">
-          <div className={fieldLabelClass}>TO</div>
+          <div className={fieldLabelClass}>📁 TO</div>
           <div className="min-w-0 flex-1 truncate font-mono text-[12.5px] text-[var(--text-secondary)]">
             {toDisplayPath(effectiveDestinationDir, homeDir)}
           </div>
@@ -271,7 +286,7 @@ export function IdleScreen(): React.JSX.Element {
         >
           <div className="flex flex-wrap items-center gap-2">
             <div id="idle-streams-label" className={fieldLabelClass}>
-              PARALLEL STREAMS
+              🚀 PARALLEL STREAMS
             </div>
             <ToggleGroup
               value={[String(chunksPerNetwork)]}
@@ -330,7 +345,7 @@ export function IdleScreen(): React.JSX.Element {
       <div className="flex-1 overflow-y-auto px-5 pb-3.5">
         <div className="flex items-baseline justify-between border-b border-border pb-2">
           <h2 className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-            Connected Networks
+            🌐 Connected Networks
           </h2>
           <div className="shrink-0 font-mono text-[10.5px] text-muted-foreground">
             {interfaces.length} detected · {selectedInterfaceIds.length} selected

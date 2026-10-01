@@ -2,11 +2,17 @@
 
 > **Use every connection. Finish one file.**
 
+<p align="center">
+  <img src="docs/netforge-mark.png" alt="NetForge logo" width="120" />
+</p>
+
+<p align="center"><strong>⚡ A multi-link download workbench for Wi-Fi, Ethernet, and tethered connections.</strong></p>
+
 NetForge is a cross-platform desktop download workbench for combining multiple network interfaces—Wi‑Fi, Ethernet, USB tethering, bridges, and other active adapters—into one coordinated download. Instead of assigning an entire file to one route, NetForge divides a ranged download into byte blocks, sends those blocks through selected interfaces, and assembles the verified result locally.
 
 **Maintained by [Krish2214](https://github.com/krish2214).** NetForge is an independent renamed distribution based on the MIT-licensed Plexo codebase. The upstream license and attribution remain in [`LICENSE`](LICENSE).
 
-## Try it now
+## 🚀 Try it now
 
 - **[Open the interactive project website](https://krish2214.github.io/netforge/)**
 - **[Browse the source on GitHub](https://github.com/krish2214/netforge)**
@@ -15,7 +21,7 @@ NetForge is a cross-platform desktop download workbench for combining multiple n
 
 The website includes a platform picker, live release search, direct download buttons, a system walkthrough, screenshot lightbox, theme switcher, copyable links, and an explanation of the transfer pipeline.
 
-## What problem does NetForge solve?
+## 🎯 What problem does NetForge solve?
 
 A normal downloader usually opens one connection and leaves the operating system to choose one route. That is limiting when a computer has a fast Ethernet link, a separate Wi‑Fi connection, and a phone hotspot available at the same time. NetForge is designed for those situations.
 
@@ -29,7 +35,7 @@ This approach is useful when:
 - you want to see which network is contributing to a transfer;
 - you need resumable downloads rather than a restart after interruption.
 
-## How the download works
+## 🧭 How the download works
 
 ```text
 Paste URL
@@ -82,7 +88,7 @@ A failed request returns its block to the shared queue. NetForge detects silent 
 
 During pause/resume, the part files are treated as the source of truth. The app rechecks the server version, reconciles file lengths, and only assembles complete blocks. The assembling boundary is persisted immediately so a crash during reassembly can resume safely.
 
-## Application interface
+## 🖥️ Application interface
 
 The desktop UI is organized around a compact transfer instrument panel:
 
@@ -98,7 +104,13 @@ The desktop UI is organized around a compact transfer instrument panel:
 
 The theme toggle supports light and dark modes. Network names and colors can be customized so physical adapters remain recognizable across downloads.
 
-## Speed tuning checklist
+### App screenshots
+
+| Start with multiple routes                                | Watch active transfer                                         | Verify the finished file                                      |
+| --------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| ![Network selection](docs/screenshots/links-netforge.png) | ![Active download](docs/screenshots/downloading-netforge.png) | ![Completed download](docs/screenshots/complete-netforge.png) |
+
+## 🚦 Speed tuning checklist
 
 If the measured speed is lower than expected, work through this list:
 
@@ -113,7 +125,7 @@ If the measured speed is lower than expected, work through this list:
 
 NetForge reports throughput; it cannot exceed the real capacity permitted by the server, selected networks, and local storage.
 
-## Downloads
+## 📦 Downloads
 
 The current public **[v1.0.0-rc.9 release](https://github.com/krish2214/netforge/releases/tag/v1.0.0-rc.9)** contains portable builds:
 
@@ -130,7 +142,7 @@ The current public **[v1.0.0-rc.9 release](https://github.com/krish2214/netforge
 
 The Windows and macOS artifacts are portable unsigned ZIP files. Native signed installers require signing on the respective operating systems. The source fixes in this repository are newer than the currently published rc.9 binaries; build from source or use the next release once published to receive the latest throughput changes.
 
-## Build from source
+## 🛠️ Build from source
 
 Requirements: Node.js 22.12+ and npm 9+.
 
@@ -176,7 +188,7 @@ docs/                     GitHub Pages product website
 
 **The UI looks stale after a code change:** restart the Electron development process. The packaged release reads its own bundled renderer assets.
 
-## GitHub Pages website
+## 🌐 GitHub Pages website
 
 The production site is published from `main/docs` at **[krish2214.github.io/netforge](https://krish2214.github.io/netforge/)**. It is a static, inspectable page with no backend dependency. To configure Pages manually, open **Repository → Settings → Pages**, choose **Deploy from a branch**, select `main`, and choose `/docs`.
 
