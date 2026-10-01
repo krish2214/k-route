@@ -1,7 +1,9 @@
-import type { ClientRequestArgs } from 'node:http'
+import { Agent as HttpAgent, type ClientRequestArgs } from 'node:http'
+import { Agent as HttpsAgent } from 'node:https'
 import { connect, isIP, Socket, type SocketConstructorOpts } from 'node:net'
 import { networkInterfaces } from 'node:os'
 import { connect as tlsConnect } from 'node:tls'
+import type { Duplex } from 'node:stream'
 
 // Linux picks a socket's outgoing interface from the routing table alone: binding to an
 // interface's IP (Node's `localAddress`) still sends the packets out the default route, where the
@@ -95,6 +97,63 @@ export function connectFrom(localAddress: string, host: string, port: number): S
     port,
     family: 4
   })
+}
+
+type AgentCallback = (error: Error | null, socket: Duplex) => void
+
+/** Keep-alive agents whose newly opened sockets still use NetForge's selected interface. */
+class RoutedHttpAgent extends HttpAgent {
+  constructor(private readonly localAddress: string) {
+    super({ keepAlive: true, keepAliveMsecs: 1000, maxSockets: 8, maxFreeSockets: 2 })
+  }
+
+  override createConnection(options: ClientRequestArgs, callback?: AgentCallback): undefined {
+    const host = String(options.hostname ?? options.host ?? '')
+    const port = Number(options.port ?? 80)
+    const socket = connectFrom(this.localAddress, host, port)
+    const done = (error: Error | null): void =>
+      callback?.(error, error ? (undefined as never) : socket)
+    socket.once('connect', () => done(null))
+    socket.once('error', (error) => done(error))
+    return undefined
+  }
+}
+
+class RoutedHttpsAgent extends HttpsAgent {
+  constructor(private readonly localAddress: string) {
+    super({ keepAlive: true, keepAliveMsecs: 1000, maxSockets: 8, maxFreeSockets: 2 })
+  }
+
+  override createConnection(options: ClientRequestArgs, callback?: AgentCallback): undefined {
+    const host = String(options.hostname ?? options.host ?? '')
+    const port = Number(options.port ?? 443)
+    const socket = connectFrom(this.localAddress, host, port)
+    const secureSocket = tlsConnect({
+      socket,
+      servername: isIP(host) ? undefined : host
+    })
+    const done = (error: Error | null): void =>
+      callback?.(error, error ? (undefined as never) : secureSocket)
+    secureSocket.once('secureConnect', () => done(null))
+    secureSocket.once('error', (error) => done(error))
+    socket.once('error', (error) => done(error))
+    return undefined
+  }
+}
+
+const routedAgents = new Map<string, RoutedHttpAgent | RoutedHttpsAgent>()
+
+export function routedAgentFor(
+  localAddress: string,
+  protocol: string
+): RoutedHttpAgent | RoutedHttpsAgent {
+  const key = `${protocol}//${localAddress || 'default'}`
+  const existing = routedAgents.get(key)
+  if (existing) return existing
+  const agent =
+    protocol === 'https:' ? new RoutedHttpsAgent(localAddress) : new RoutedHttpAgent(localAddress)
+  routedAgents.set(key, agent)
+  return agent
 }
 
 /** Options that route an http(s) request for `target` through the interface owning
