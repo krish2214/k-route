@@ -5,7 +5,7 @@ import type { ProbeResult } from '../../shared/types'
 import { testKnobs } from '../testKnobs'
 
 const MAX_REDIRECTS = 5
-const USER_AGENT = 'NetForge/1.0'
+const USER_AGENT = 'K-Route/1.0'
 // A server that accepts the connection and never answers would otherwise hang the probe — and
 // the link field's "Checking…" — forever. Same budget as a stalled chunk.
 const PROBE_TIMEOUT_MS = testKnobs.stallTimeoutMs

@@ -101,7 +101,7 @@ export function connectFrom(localAddress: string, host: string, port: number): S
 
 type AgentCallback = (error: Error | null, socket: Duplex) => void
 
-/** Keep-alive agents whose newly opened sockets still use NetForge's selected interface. */
+/** Keep-alive agents whose newly opened sockets still use K-Route's selected interface. */
 class RoutedHttpAgent extends HttpAgent {
   constructor(private readonly localAddress: string) {
     super({ keepAlive: true, keepAliveMsecs: 1000, maxSockets: 8, maxFreeSockets: 2 })

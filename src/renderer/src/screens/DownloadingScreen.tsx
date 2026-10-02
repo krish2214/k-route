@@ -141,14 +141,14 @@ export function DownloadingScreen({ download }: { download: DownloadState }): Re
 
   useEffect(() => {
     if (isAssembling) {
-      document.title = `NetForge — Assembling (${assemblePercent}%)`
+      document.title = `K-Route — Assembling (${assemblePercent}%)`
     } else if (isPaused) {
-      document.title = knownSize ? `NetForge — Paused (${percent}%)` : 'NetForge — Paused'
+      document.title = knownSize ? `K-Route — Paused (${percent}%)` : 'K-Route — Paused'
     } else {
-      document.title = knownSize ? `NetForge — ${percent}%` : 'NetForge — downloading'
+      document.title = knownSize ? `K-Route — ${percent}%` : 'K-Route — downloading'
     }
     return () => {
-      document.title = 'NetForge'
+      document.title = 'K-Route'
     }
   }, [percent, assemblePercent, knownSize, isPaused, isAssembling])
 
@@ -436,7 +436,10 @@ export function DownloadingScreen({ download }: { download: DownloadState }): Re
           )}
         </div>
         {actionError && (
-          <div role="alert" className="max-w-[260px] truncate font-mono text-[10px] text-destructive">
+          <div
+            role="alert"
+            className="max-w-[260px] truncate font-mono text-[10px] text-destructive"
+          >
             {actionError}
           </div>
         )}

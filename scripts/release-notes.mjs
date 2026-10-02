@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url'
 const { NetForgeDownloads: downloads } = createRequire(import.meta.url)('../docs/downloads.js')
 
 const REPO = 'krish2214/netforge'
-const SITE = 'https://krish2214.github.io/netforge/'
+const SITE = 'https://krish2214.github.io/k-route/'
 
 const [tag, arg] = process.argv.slice(2)
 if (!tag || !/^v\d/.test(tag)) {

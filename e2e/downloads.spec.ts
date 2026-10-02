@@ -57,7 +57,7 @@ const NOISE = [
   'netforge_1.0.0-rc.7_amd64.snap',
   'NetForge-1.0.0-rc.4-arm64-mac.zip'
 ]
-const BASE = 'https://github.com/krish2214/netforge/releases/download/v1.0.0-rc.7/'
+const BASE = 'https://github.com/krish2214/k-route/releases/download/v1.0.0-rc.7/'
 const release = (names: string[] = [...SHIPPED, ...NOISE]): unknown => ({
   tag_name: 'v1.0.0-rc.7',
   prerelease: true,
@@ -256,11 +256,11 @@ test.describe('which download is offered', () => {
       size: 100 * 1048576,
       url: BASE + name
     }))
-    const text = D.markdown(files, 'https://krish2214.github.io/netforge/')
+    const text = D.markdown(files, 'https://krish2214.github.io/k-route/')
     for (const name of SHIPPED) expect(text.split(BASE + name + ')')).toHaveLength(2)
     for (const name of NOISE) expect(text).not.toContain(name)
     expect(text).toContain('[Apple silicon]')
-    expect(text).toContain('https://krish2214.github.io/netforge/#downloads')
+    expect(text).toContain('https://krish2214.github.io/k-route/#downloads')
   })
 })
 
@@ -487,7 +487,7 @@ test.describe('the download page', () => {
       await expect(page.locator('#asset-groups')).toContainText('Couldn’t load the latest release')
       await expect(page.locator('#primary-btn')).toHaveAttribute(
         'href',
-        'https://github.com/krish2214/netforge/releases'
+        'https://github.com/krish2214/k-route/releases'
       )
     } finally {
       await close()

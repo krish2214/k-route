@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">K-Route mark</title>
+  <desc id="desc">Three colorful network routes converge into one forward path.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17232e"/><stop offset="1" stop-color="#0b1118"/></linearGradient>
+    <linearGradient id="teal" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#20c7b5"/><stop offset="1" stop-color="#8df3dc"/></linearGradient>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="220" fill="url(#bg)"/>
+  <path d="M190 760 C260 760 284 704 340 642 L466 502" fill="none" stroke="#ffad32" stroke-width="68" stroke-linecap="round"/>
+  <path d="M512 820 L512 392" fill="none" stroke="#26cbb8" stroke-width="68" stroke-linecap="round"/>
+  <path d="M834 760 C764 760 740 704 684 642 L558 502" fill="none" stroke="#4b95ff" stroke-width="68" stroke-linecap="round"/>
+  <circle cx="512" cy="420" r="74" fill="#f5fbff"/><circle cx="512" cy="420" r="54" fill="#17232e"/>
+  <path d="M512 420 H760" fill="none" stroke="url(#teal)" stroke-width="54" stroke-linecap="round"/>
+  <path d="M730 344 L806 420 L730 496" fill="none" stroke="#f5fbff" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

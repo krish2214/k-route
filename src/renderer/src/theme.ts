@@ -21,7 +21,7 @@ function makeKindPalette(name: string, label: string): KindPalette {
   }
 }
 
-// Teal / amber / steel per network, per the "NetForge v2" design — exact hex values live as
+// Teal / amber / steel per network, per the "K-Route v2" design — exact hex values live as
 // CSS custom properties (main.css) so dark mode reproduces the design precisely while light
 // mode gets a coherent, hand-tuned counterpart in the same hues.
 export const KIND_PALETTE: Record<NetworkInterfaceKind, KindPalette> = {

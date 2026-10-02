@@ -8,7 +8,7 @@ import { ScreenFooter } from '../components/ScreenFooter'
 import { Alert, AlertDescription } from '../components/ui/alert'
 import { Button } from '../components/ui/button'
 import { ToggleGroup, ToggleGroupItem } from '../components/ui/toggle-group'
-import netforgeMark from '../assets/netforge-mark.png'
+import kRouteMark from '../assets/k-route-mark.png'
 import { useNetworkPolling } from '../hooks/useNetworkPolling'
 import { useAppStore } from '../store/useAppStore'
 import { describeError, formatBytes, toDisplayPath } from '../utils/format'
@@ -182,10 +182,10 @@ export function IdleScreen(): React.JSX.Element {
     <div className="flex h-full flex-col bg-background">
       <div className="flex flex-col gap-[9px] px-5 pt-4 pb-3.5">
         <div className="flex items-center gap-2.5 rounded-[10px] border border-border bg-[var(--hero-bg)] px-3 py-2">
-          <img src={netforgeMark} alt="NetForge" className="size-8 rounded-[8px] object-contain" />
+          <img src={kRouteMark} alt="K-Route" className="size-8 rounded-[8px] object-contain" />
           <div className="min-w-0">
             <div className="font-sans text-[13px] font-bold tracking-[-0.02em] text-foreground">
-              NetForge <span aria-hidden="true">⚡</span>
+              K-Route <span aria-hidden="true">⚡</span>
             </div>
             <div className="font-mono text-[9px] tracking-[0.12em] text-muted-foreground uppercase">
               Multi-link download workbench

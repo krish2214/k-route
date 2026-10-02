@@ -5,7 +5,7 @@ Thanks for taking a look at NetForge. It's a small project, so the process is in
 ## Setup
 
 ```bash
-git clone https://github.com/krish2214/netforge.git
+git clone https://github.com/krish2214/k-route.git
 cd netforge
 npm install
 npm run dev

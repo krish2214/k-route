@@ -1,7 +1,7 @@
 {
-  "name": "netforge",
+  "name": "k-route",
   "version": "1.0.0-rc.9",
-  "description": "Speed up downloads by combining multiple network connections in parallel",
+  "description": "K-Route combines multiple network connections for faster, resilient downloads",
   "main": "./out/main/index.js",
   "author": "Krish2214",
   "scripts": {

@@ -4,7 +4,7 @@ import type { UpdateInfo } from '../shared/types'
 type ReleaseInfo = Omit<UpdateInfo, 'dismissed'>
 
 const REPO = 'krish2214/netforge'
-export const UPDATE_PAGE_URL = 'https://krish2214.github.io/netforge/'
+export const UPDATE_PAGE_URL = 'https://krish2214.github.io/k-route/'
 
 function parseVersion(version: string): number[] {
   // ponytail: naive numeric-segment compare, not full semver (a "1.0.0-rc.2" pre-release tag

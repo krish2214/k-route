@@ -1,5 +1,5 @@
 /*
- * What NetForge's download page and its GitHub Release notes say about each file we ship, and which
+ * What K-Route's download page and its GitHub Release notes say about each file we ship, and which
  * one to put in front of a visitor. Plain ES5 so the page can load it as-is; the release-notes
  * script and the tests load it with require().
  *
@@ -16,8 +16,8 @@
   // Shown under each OS's downloads. `code` spans are wrapped in backticks.
   var NOTES = {
     mac: [
-      'NetForge isn’t signed with an Apple Developer certificate yet, so macOS asks you to confirm the first launch: open the app once, then go to System Settings → Privacy & Security and choose Open Anyway.',
-      'If macOS says the app is damaged or can’t be opened, run `xattr -dr com.apple.quarantine /Applications/NetForge.app` in Terminal and open it again.',
+      'K-Route isn’t signed with an Apple Developer certificate yet, so macOS asks you to confirm the first launch: open the app once, then go to System Settings → Privacy & Security and choose Open Anyway.',
+      'If macOS says the app is damaged or can’t be opened, run `xattr -dr com.apple.quarantine /Applications/K-Route.app` in Terminal and open it again.',
       'Not sure which Mac you have? Apple menu → About This Mac: “Chip: Apple M…” is Apple silicon, “Processor: Intel…” is Intel.'
     ],
     win: [
@@ -27,7 +27,7 @@
     linux: [
       'AppImage: `chmod +x netforge-*.AppImage`, then run it. Recent Ubuntu needs FUSE 2 first: `sudo apt install libfuse2t64` (older releases call it `libfuse2`) — or use the .deb, which needs nothing extra.',
       '.deb: `sudo apt install ./netforge_*.deb`.',
-      'Using more than one network needs Linux kernel 5.7 or newer (any current distro); on older kernels NetForge can only use the default network.'
+      'Using more than one network needs Linux kernel 5.7 or newer (any current distro); on older kernels K-Route can only use the default network.'
     ]
   }
 

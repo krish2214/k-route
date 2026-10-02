@@ -4,7 +4,7 @@ import { useAppStore } from '../store/useAppStore'
 const POLL_INTERVAL_MS = 5000
 
 /** Keeps the interface list and their latency readouts fresh while a screen that shows them is mounted —
- * e.g. so plugging in a phone over USB, or losing Wi-Fi, is reflected without the user restarting NetForge. */
+ * e.g. so plugging in a phone over USB, or losing Wi-Fi, is reflected without the user restarting K-Route. */
 export function useNetworkPolling(enabled: boolean): void {
   const loadInterfaces = useAppStore((store) => store.loadInterfaces)
   const refreshLatencies = useAppStore((store) => store.refreshLatencies)

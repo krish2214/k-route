@@ -27,7 +27,7 @@ export function UpdateDialog(): React.JSX.Element | null {
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>NetForge {availableUpdate.version} is available</AlertDialogTitle>
+          <AlertDialogTitle>K-Route {availableUpdate.version} is available</AlertDialogTitle>
           <AlertDialogDescription>A new version is ready to download.</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

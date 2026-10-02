@@ -25,7 +25,7 @@ export function NoConnectionsScreen(): React.JSX.Element {
           No networks to combine
         </div>
         <div className="max-w-[380px] text-center font-sans text-[12.5px] leading-[1.6] text-[var(--text-secondary)]">
-          NetForge needs at least one active network. Join a Wi-Fi network, plug in Ethernet, or
+          K-Route needs at least one active network. Join a Wi-Fi network, plug in Ethernet, or
           connect an iPhone over USB with Personal Hotspot enabled.
         </div>
         <div className="mt-1 flex gap-2">

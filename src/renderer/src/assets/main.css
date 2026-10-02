@@ -89,9 +89,9 @@
   --radius: 8px;
 }
 
-/* Maps shadcn/Base UI's expected semantic tokens onto NetForge's existing palette above, instead of
+/* Maps shadcn/Base UI's expected semantic tokens onto K-Route's existing palette above, instead of
    introducing a second, parallel color system. Tailwind only generates `bg-primary`-style
-   utilities for names declared here, in `@theme` — so this can freely reuse NetForge's own custom
+   utilities for names declared here, in `@theme` — so this can freely reuse K-Route's own custom
    property *values* (e.g. --color-accent) without colliding with their names, since only the
    left-hand names below become Tailwind tokens. */
 @theme inline {
@@ -127,7 +127,7 @@
   :root {
     --hero-bg: linear-gradient(180deg, #202325 0%, #1b1e20 100%);
     --hero-border: #2b2f33;
-    /* Graphite instrument-panel background — exact hex values from the "NetForge v2" design doc. */
+    /* Graphite instrument-panel background — exact hex values from the "K-Route v2" design doc. */
     --bg: #1b1e20;
     --bg-secondary: #202325;
     --bg-tertiary: #202325;

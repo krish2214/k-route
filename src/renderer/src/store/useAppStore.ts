@@ -39,7 +39,7 @@ interface AppStore {
   /** True in electron-vite's dev server, false in a packaged build — gates the dev tools panel. */
   isDev: boolean
 
-  /** NetForge focuses on one download at a time — this is it. */
+  /** K-Route focuses on one download at a time — this is it. */
   currentDownload: DownloadState | null
   speedHistory: number[]
   /** Same rolling window as speedHistory, split by physical network — for the stacked

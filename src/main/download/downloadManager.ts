@@ -406,7 +406,7 @@ export class DownloadManager {
       })
     )
 
-    // NetForge only ever tracks one current download — getCurrentDownload() always returns
+    // K-Route only ever tracks one current download — getCurrentDownload() always returns
     // whichever restored runtime started most recently. Any other one restored alongside it is
     // an orphan (most likely left over from before concurrent starts were blocked): nothing
     // would ever look at it again, so left in `runtimes` it would sit there forever, invisibly
@@ -430,7 +430,7 @@ export class DownloadManager {
     return latest ? structuredClone(latest.state) : null
   }
 
-  /** NetForge shows one download at a time (see useAppStore's currentDownload) — starting a second
+  /** K-Route shows one download at a time (see useAppStore's currentDownload) — starting a second
    * one while one is already running/paused/assembling would silently race it for disk I/O and
    * scramble the renderer's single-download view as updates from both interleave. */
   private hasActiveDownload(): boolean {

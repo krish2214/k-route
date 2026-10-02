@@ -1,4 +1,4 @@
-import netforgeMark from '../assets/netforge-mark.png'
+import kRouteMark from '../assets/k-route-mark.png'
 import { ColorBadge } from './ColorBadge'
 import { ThemeToggle } from './ThemeToggle'
 import { UpdateIndicator } from './UpdateIndicator'
@@ -34,12 +34,12 @@ export function TitleBar({ status }: { status: TitleBarStatus }): React.JSX.Elem
         }`}
       >
         <img
-          src={netforgeMark}
+          src={kRouteMark}
           alt=""
           aria-hidden="true"
           className="size-5 rounded-[5px] object-contain"
         />
-        NetForge
+        K-Route
       </div>
       <div className="flex-1" />
       {status.kind === 'combined' && (

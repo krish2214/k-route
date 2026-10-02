@@ -168,7 +168,7 @@ export function downloadChunk(options: ChunkDownloadOptions): Promise<void> {
     // The whole file from the start needs no Range at all — and an empty file would answer
     // `bytes=0-` with 416, since it has no byte 0 to start from.
     const headers: Record<string, string> = {
-      'User-Agent': 'NetForge/1.0',
+      'User-Agent': 'K-Route/1.0',
       // Ranges must map byte-for-byte to the part file. Avoid transparent compression, which also
       // makes CDN range responses needlessly expensive to decode in the main process.
       'Accept-Encoding': 'identity',
@@ -354,7 +354,7 @@ export function fetchRange(
           ...routeFrom(localAddress, target),
           agent: routedAgentFor(localAddress, target.protocol),
           headers: {
-            'User-Agent': 'NetForge/1.0',
+            'User-Agent': 'K-Route/1.0',
             Range: `bytes=${start}-${end}`
           }
         },

@@ -133,17 +133,17 @@ const ERROR_HINTS: Array<{ pattern: RegExp; message: string }> = [
   {
     pattern: /parts never finished/,
     message:
-      'The download never fully finished, so NetForge couldn’t assemble it. Try downloading again.'
+      'The download never fully finished, so K-Route couldn’t assemble it. Try downloading again.'
   },
   {
     pattern: /refusing to write a corrupt file/,
     message:
-      'One of the downloaded pieces didn’t match its expected size, so NetForge stopped rather than save a corrupted file. Try downloading again.'
+      'One of the downloaded pieces didn’t match its expected size, so K-Route stopped rather than save a corrupted file. Try downloading again.'
   },
   {
     pattern: /refusing to keep a corrupt file/,
     message:
-      'The assembled file didn’t match its expected size, so NetForge removed it rather than keep a corrupted file. Try downloading again.'
+      'The assembled file didn’t match its expected size, so K-Route removed it rather than keep a corrupted file. Try downloading again.'
   },
   {
     pattern: /ENOTFOUND|EAI_AGAIN/,
@@ -171,7 +171,7 @@ const ERROR_HINTS: Array<{ pattern: RegExp; message: string }> = [
   },
   {
     pattern: /Server responded with status 401/,
-    message: 'This link requires you to sign in — NetForge can’t download it.'
+    message: 'This link requires you to sign in — K-Route can’t download it.'
   },
   {
     pattern: /Server responded with status 403/,
