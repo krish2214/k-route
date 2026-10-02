@@ -21,6 +21,26 @@ NetForge is a cross-platform desktop download workbench for combining multiple n
 
 The website includes a platform picker, live release search, direct download buttons, a system walkthrough, screenshot lightbox, theme switcher, copyable links, and an explanation of the transfer pipeline.
 
+### Project at a glance
+
+```mermaid
+flowchart LR
+    A[🔗 URL] --> B[🔎 Probe]
+    B --> C{Supports ranges?}
+    C -- No --> D[Single safe stream]
+    C -- Yes --> E[🧩 Shared byte queue]
+    E --> F1[📶 Wi-Fi worker]
+    E --> F2[🔌 Ethernet worker]
+    E --> F3[📱 Tethered worker]
+    F1 --> G[📁 Part files]
+    F2 --> G
+    F3 --> G
+    G --> H[✅ Verify + assemble]
+    D --> H
+```
+
+NetForge is not a VPN, proxy, bandwidth-bonding service, or cloud relay. The bytes travel directly from the origin to your machine; the application coordinates independent range requests and keeps the work visible.
+
 ## 🎯 What problem does NetForge solve?
 
 A normal downloader usually opens one connection and leaves the operating system to choose one route. That is limiting when a computer has a fast Ethernet link, a separate Wi‑Fi connection, and a phone hotspot available at the same time. NetForge is designed for those situations.
@@ -56,6 +76,26 @@ Write parts ──► stream into independent temporary files with retry protect
 Verify + assemble ──► validate ranges, merge in order, publish the completed file
 ```
 
+### Transfer lifecycle graph
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant P as Probe
+    participant Q as Queue
+    participant N as Network workers
+    participant V as Verifier
+
+    U->>P: Paste a URL
+    P-->>U: Size, filename, ranges, validators
+    U->>Q: Confirm networks and streams
+    Q->>N: Assign byte ranges
+    N-->>Q: Progress, speed, retries
+    Q->>N: Reassign slow or failed blocks
+    N-->>V: Completed part files
+    V-->>U: Verified assembled download
+```
+
 ### 1. Probe
 
 NetForge first checks the URL. It follows redirects, reads the suggested filename, detects the total size, checks whether the origin supports `Range` requests, and records validators such as `ETag` and `Last-Modified`.
@@ -67,6 +107,21 @@ If the origin does not support ranges or does not provide a known size, NetForge
 For a ranged download, the file becomes a shared queue of blocks. The current production planner uses blocks up to **16 MiB**, keeps a minimum block size to avoid excessive request overhead, and supports up to **32 streams total** with up to **8 streams per network**.
 
 Workers are interleaved across networks when they start. A fast interface can later claim more available blocks through work stealing, while a stalled interface does not permanently own the rest of the file.
+
+### Conceptual contribution graph
+
+The chart below is illustrative, not a benchmark. It shows why a combined line can rise when independent routes contribute useful bytes at the same time.
+
+```mermaid
+xychart-beta
+    title "Illustrative multi-link contribution"
+    x-axis [Start, Probe, Steady state, Finish]
+    y-axis "Relative throughput" 0 --> 100
+    line "Wi-Fi" [8, 32, 46, 18]
+    line "Ethernet" [12, 38, 52, 21]
+    line "Tethered" [4, 18, 27, 9]
+    line "Combined" [24, 88, 100, 48]
+```
 
 ### 3. Route
 
@@ -124,6 +179,31 @@ If the measured speed is lower than expected, work through this list:
 8. **Compare the per-network rows.** If one row stays near zero, that interface may be disconnected, blocked, or unsupported for device binding.
 
 NetForge reports throughput; it cannot exceed the real capacity permitted by the server, selected networks, and local storage.
+
+## ✨ What makes NetForge different?
+
+| Difference                     | Why it matters                                                                                                                                  |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Direct-to-origin transfers** | No account, relay server, subscription, or third-party bandwidth path is required.                                                              |
+| **Interface-aware routing**    | Workers can use Wi-Fi, Ethernet, tethering, or another adapter instead of relying only on the default route.                                    |
+| **One shared queue**           | Fast routes can claim more work while slow routes do not hold the download hostage.                                                             |
+| **Part-file recovery**         | Interrupted work can resume from validated temporary parts instead of restarting from byte zero.                                                |
+| **Visible contribution**       | The UI exposes per-network speed, bytes, share, retries, and active blocks instead of hiding everything behind one number.                      |
+| **Safe failure behavior**      | Incorrect ranges, changed remote files, stalled connections, and unsupported servers are rejected instead of silently producing corrupt output. |
+
+### Practical decision guide
+
+```mermaid
+flowchart TD
+    S{What do you have?}
+    S -->|One stable network| O[Use NetForge as a resilient ranged downloader]
+    S -->|Wi-Fi + Ethernet| M[Select both and compare contribution]
+    S -->|Hotspot + another route| T[Start with 2–4 streams per network]
+    S -->|Server has no ranges| L[Expect one safe stream]
+    M --> R{One route stays near zero?}
+    R -->|Yes| X[Check reachability, VPN, firewall, and OS binding]
+    R -->|No| Y[Increase streams only if server and links tolerate it]
+```
 
 ## 📦 Downloads
 
