@@ -254,3 +254,64 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* K-Route signal console refresh — Concept B visual system */
+:root {
+  --bg: #0b1118;
+  --bg-secondary: #111c27;
+  --bg-tertiary: #172635;
+  --input-bg: #0e1822;
+  --track-bg: #1d3040;
+  --text: #f4f8fb;
+  --text-secondary: #a8bac8;
+  --text-tertiary: #7890a0;
+  --border: #263b4b;
+  --border-subtle: #1b2b39;
+  --border-strong: #3c5668;
+  --footer-border: #263b4b;
+  --icon-muted: #314b5f;
+  --icon-muted-strong: #4a687d;
+  --scrollbar-thumb: #315064;
+  --hero-bg: linear-gradient(135deg, #132535 0%, #0c1721 58%, #111b29 100%);
+  --hero-border: #315064;
+  --color-accent: #ffad32;
+  --color-accent-onsolid: #16120b;
+  --color-success: #2cc8b5;
+  --node-accent: #f4f8fb;
+  --radius: 12px;
+}
+
+html, body, #root { background: #0b1118; }
+body {
+  background:
+    radial-gradient(circle at 84% 8%, rgba(87,153,255,.14), transparent 28%),
+    radial-gradient(circle at 10% 84%, rgba(255,173,50,.08), transparent 24%),
+    #0b1118;
+}
+
+@layer base {
+  ::-webkit-scrollbar-thumb { background: linear-gradient(var(--color-ethernet), var(--color-wifi)); }
+  button, input { transition: border-color .18s var(--ease, cubic-bezier(.23,1,.32,1)), background-color .18s var(--ease, cubic-bezier(.23,1,.32,1)), transform .18s var(--ease, cubic-bezier(.23,1,.32,1)), box-shadow .18s var(--ease, cubic-bezier(.23,1,.32,1)); }
+  button:not(:disabled):active { transform: scale(.975); }
+  input:focus { box-shadow: 0 0 0 3px rgba(255,173,50,.18), 0 0 22px rgba(255,173,50,.08); }
+}
+
+/* Add depth to existing screens through shared surfaces. */
+.bg-background { background-color: transparent; background-image: radial-gradient(circle at 90% 0%, rgba(77,150,255,.07), transparent 34%), linear-gradient(135deg, rgba(255,173,50,.025), transparent 42%); }
+.bg-card { background: linear-gradient(145deg, rgba(22,39,53,.96), rgba(13,24,34,.98)); border-color: rgba(60,86,104,.68); box-shadow: 0 16px 40px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.035); }
+.border-border, .border-input { border-color: rgba(60,86,104,.72); }
+
+/* Hero bands become an instrument panel with a subtle scanline. */
+[class*="HeroBand"] { position: relative; overflow: hidden; background: linear-gradient(135deg, #132838 0%, #0c1823 58%, #172233 100%) !important; border-bottom-color: #315064 !important; box-shadow: 0 15px 45px rgba(0,0,0,.2); }
+[class*="HeroBand"]::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .18; background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,255,255,.035) 6px); mix-blend-mode: screen; }
+
+/* Network and block surfaces glow with the route palette during active work. */
+[class*="NetworkCard"], [class*="NetworkRow"], [class*="BlockGrid"] { filter: saturate(1.08); }
+
+@media (prefers-color-scheme: light) {
+  :root { --bg: #f5f8fa; --bg-secondary: #ffffff; --bg-tertiary: #eaf0f4; --input-bg: #ffffff; --text: #10212d; --text-secondary: #4f6878; --text-tertiary: #607888; --border: #cbd9e1; --border-subtle: #dde7ed; --border-strong: #9db4c2; --hero-bg: linear-gradient(135deg, #eef7fb, #ffffff); --hero-border: #cbd9e1; }
+  html, body, #root { background: #f5f8fa; }
+  body { background: radial-gradient(circle at 90% 0%, rgba(77,150,255,.10), transparent 30%), #f5f8fa; }
+  .bg-card { background: linear-gradient(145deg, #ffffff, #f3f7f9); }
+}
