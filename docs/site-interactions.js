@@ -50,17 +50,17 @@
 
   var themeButton = one('#theme')
   if (themeButton) {
-    var savedTheme = localStorage.getItem('k-route-site-theme')
+    var savedTheme = localStorage.getItem('netforge-site-theme')
     if (savedTheme === 'night') document.body.classList.add('night')
     themeButton.addEventListener('click', function () {
       document.body.classList.toggle('night')
-      localStorage.setItem('k-route-site-theme', document.body.classList.contains('night') ? 'night' : 'paper')
+      localStorage.setItem('netforge-site-theme', document.body.classList.contains('night') ? 'night' : 'paper')
       toast(document.body.classList.contains('night') ? 'Night workbench enabled' : 'Paper workbench enabled')
     })
   }
 
   var stageDetails = {
-    probe: 'A small ranged request confirms that the origin can serve independent slices before K-Route commits to parallel work.',
+    probe: 'A small ranged request confirms that the origin can serve independent slices before NetForge commits to parallel work.',
     split: 'The file becomes a shared queue of byte ranges. Workers lease the next available chunk instead of receiving a fixed slice.',
     route: 'Each worker binds its request to a selected local address. The operating system keeps its normal route table.',
     verify: 'Parts are written separately, merged in order, and checked against the expected length and server validators.'
